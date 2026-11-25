@@ -52,8 +52,26 @@ window.ESTUDIO = {
   ],
   equipo: [
     {
+      nombre: "",
+      apellido: "",
+
       titulo: "Profesional responsable",
-      descripcion: "Nombre y matrícula pendientes de configuración.",
+
+      matricula: "",
+      jurisdiccion: "",
+
+      fotografia: "",
+
+      biografia:
+        "Información sobre formación académica, trayectoria y ejercicio profesional pendiente de configuración.",
+
+      formacion: [],
+
+      especialidades: [],
+
+      acreditaciones: [],
+
+      linkedin: "",
     },
   ],
 };

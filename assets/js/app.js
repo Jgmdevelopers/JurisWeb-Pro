@@ -4,20 +4,7 @@ document.querySelectorAll("[data-field]").forEach((el) => {
   const valor = estudio[el.dataset.field];
   if (typeof valor === "string" && valor.trim()) el.textContent = valor;
 });
-function renderTarjetas(id, items) {
-  const cont = document.getElementById(id);
-  if (!cont || !Array.isArray(items)) return;
-  cont.replaceChildren();
-  for (const item of items) {
-    const card = document.createElement("article"),
-      h = document.createElement("h3"),
-      p = document.createElement("p");
-    h.textContent = item.titulo;
-    p.textContent = item.descripcion;
-    card.append(h, p);
-    cont.append(card);
-  }
-}
+
 /**
  * Iconos permitidos para las áreas de práctica.
  */
@@ -141,7 +128,327 @@ function renderAreas(areas) {
 }
 
 renderAreas(estudio.areas);
-renderTarjetas("lista-equipo", estudio.equipo);
+/**
+ * Normaliza los campos de texto opcionales.
+ */
+function normalizarTextoProfesional(valor) {
+  return typeof valor === "string" ? valor.trim() : "";
+}
+
+/**
+ * Normaliza las listas de información profesional.
+ */
+function normalizarListaProfesional(valores) {
+  if (!Array.isArray(valores)) {
+    return [];
+  }
+
+  return valores.map(normalizarTextoProfesional).filter(Boolean);
+}
+
+/**
+ * Valida las rutas locales de fotografías.
+ */
+function obtenerFotografiaProfesional(ruta) {
+  const fotografia = normalizarTextoProfesional(ruta);
+
+  const patron = /^assets\/images\/equipo\/[a-zA-Z0-9_-]+\.(webp|png|jpe?g)$/i;
+
+  return patron.test(fotografia)
+    ? fotografia
+    : "assets/icons/equipo/profesional.svg";
+}
+
+/**
+ * Valida enlaces hacia perfiles de LinkedIn.
+ */
+function obtenerLinkedinProfesional(valor) {
+  if (typeof valor !== "string" || !valor.trim()) {
+    return "";
+  }
+
+  try {
+    const url = new URL(valor);
+
+    const dominioPermitido =
+      url.hostname === "linkedin.com" || url.hostname === "www.linkedin.com";
+
+    if (
+      url.protocol !== "https:" ||
+      !dominioPermitido ||
+      url.username ||
+      url.password ||
+      url.port ||
+      !/^\/in\/[a-zA-Z0-9_%.-]+\/?$/.test(url.pathname)
+    ) {
+      return "";
+    }
+
+    return url.href;
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * Agrega una lista de información profesional
+ * solamente cuando existen elementos válidos.
+ */
+function agregarListaProfesional(contenedor, titulo, valores) {
+  const elementos = normalizarListaProfesional(valores);
+
+  if (!elementos.length) {
+    return;
+  }
+
+  const bloque = document.createElement("div");
+
+  bloque.className = "profesional-detalle";
+
+  const encabezado = document.createElement("h4");
+
+  encabezado.textContent = titulo;
+
+  const lista = document.createElement("ul");
+
+  elementos.forEach((valor) => {
+    const elemento = document.createElement("li");
+
+    elemento.textContent = valor;
+
+    lista.append(elemento);
+  });
+
+  bloque.append(encabezado, lista);
+
+  contenedor.append(bloque);
+}
+
+/**
+ * Renderiza los perfiles profesionales
+ * desde la configuración institucional.
+ */
+function renderEquipo(profesionales) {
+  const contenedor = document.getElementById("lista-equipo");
+
+  if (!contenedor || !Array.isArray(profesionales)) {
+    return;
+  }
+
+  const profesionalesValidos = profesionales.filter(
+    (profesional) =>
+      profesional &&
+      typeof profesional === "object" &&
+      !Array.isArray(profesional) &&
+      (normalizarTextoProfesional(profesional.nombre) ||
+        normalizarTextoProfesional(profesional.apellido) ||
+        normalizarTextoProfesional(profesional.titulo)),
+  );
+
+  contenedor.classList.remove(
+    "equipo-individual",
+    "equipo-doble",
+    "equipo-multiple",
+  );
+
+  if (profesionalesValidos.length === 1) {
+    contenedor.classList.add("equipo-individual");
+  } else if (profesionalesValidos.length === 2) {
+    contenedor.classList.add("equipo-doble");
+  } else if (profesionalesValidos.length > 2) {
+    contenedor.classList.add("equipo-multiple");
+  }
+
+  const fragmento = document.createDocumentFragment();
+
+  profesionalesValidos.forEach((profesional) => {
+    const nombreCompleto = [
+      normalizarTextoProfesional(profesional.nombre),
+      normalizarTextoProfesional(profesional.apellido),
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    const tituloProfesional = normalizarTextoProfesional(profesional.titulo);
+
+    const nombreVisible = nombreCompleto || tituloProfesional || "Profesional";
+
+    const tarjeta = document.createElement("article");
+
+    tarjeta.className = "profesional-tarjeta";
+
+    /* Fotografía */
+
+    const fotografia = document.createElement("div");
+
+    fotografia.className = "profesional-fotografia";
+
+    const imagen = document.createElement("img");
+
+    imagen.src = obtenerFotografiaProfesional(profesional.fotografia);
+
+    imagen.alt = "";
+    imagen.width = 320;
+    imagen.height = 400;
+    imagen.loading = "lazy";
+    imagen.decoding = "async";
+
+    imagen.addEventListener(
+      "error",
+      () => {
+        imagen.src = "assets/icons/equipo/profesional.svg";
+      },
+      { once: true },
+    );
+
+    fotografia.append(imagen);
+
+    /* Contenido profesional */
+
+    const contenido = document.createElement("div");
+
+    contenido.className = "profesional-contenido";
+
+    const etiqueta = document.createElement("p");
+
+    etiqueta.className = "profesional-etiqueta";
+
+    etiqueta.textContent = nombreCompleto
+      ? tituloProfesional || "Profesional"
+      : "Perfil institucional";
+
+    const nombre = document.createElement("h3");
+
+    nombre.textContent = nombreVisible;
+
+    contenido.append(etiqueta, nombre);
+
+    /* Matrícula y jurisdicción */
+
+    const matricula = normalizarTextoProfesional(profesional.matricula);
+
+    const jurisdiccion = normalizarTextoProfesional(profesional.jurisdiccion);
+
+    if (matricula || jurisdiccion) {
+      const credenciales = document.createElement("p");
+
+      credenciales.className = "profesional-credenciales";
+
+      credenciales.textContent = [
+        matricula ? `Matrícula: ${matricula}` : "",
+        jurisdiccion,
+      ]
+        .filter(Boolean)
+        .join(" · ");
+
+      contenido.append(credenciales);
+    }
+
+    /* Biografía */
+
+    const biografia = normalizarTextoProfesional(
+      profesional.biografia || profesional.descripcion,
+    );
+
+    if (biografia) {
+      const parrafo = document.createElement("p");
+
+      parrafo.className = "profesional-biografia";
+
+      parrafo.textContent = biografia;
+
+      contenido.append(parrafo);
+    }
+
+    /* Formación y especialidades */
+
+    agregarListaProfesional(
+      contenido,
+      "Formación académica",
+      profesional.formacion,
+    );
+
+    agregarListaProfesional(
+      contenido,
+      "Especialidades",
+      profesional.especialidades,
+    );
+
+    agregarListaProfesional(
+      contenido,
+      "Acreditaciones",
+      profesional.acreditaciones,
+    );
+
+    /* Acciones */
+
+    const acciones = document.createElement("div");
+
+    acciones.className = "profesional-acciones";
+
+    const entrevista = document.createElement("a");
+
+    entrevista.className = "profesional-cta";
+    entrevista.href = "#contacto";
+
+    entrevista.textContent = "Solicitar entrevista →";
+
+    entrevista.setAttribute(
+      "aria-label",
+      `Solicitar entrevista con ${nombreVisible}`,
+    );
+
+    acciones.append(entrevista);
+
+    /* LinkedIn opcional */
+
+    const linkedin = obtenerLinkedinProfesional(profesional.linkedin);
+
+    if (linkedin) {
+      const enlace = document.createElement("a");
+
+      enlace.className = "profesional-linkedin";
+
+      enlace.href = linkedin;
+
+      enlace.target = "_blank";
+
+      enlace.rel = "noopener noreferrer";
+
+      enlace.textContent = "LinkedIn";
+
+      enlace.setAttribute(
+        "aria-label",
+        `LinkedIn de ${nombreVisible} (nueva pestaña)`,
+      );
+
+      acciones.append(enlace);
+    }
+
+    contenido.append(acciones);
+
+    tarjeta.append(fotografia, contenido);
+
+    fragmento.append(tarjeta);
+  });
+
+  /* Estado vacío */
+
+  if (!profesionalesValidos.length) {
+    const mensaje = document.createElement("p");
+
+    mensaje.className = "equipo-vacio";
+
+    mensaje.textContent =
+      "El equipo profesional se encuentra pendiente de configuración.";
+
+    fragmento.append(mensaje);
+  }
+
+  contenedor.replaceChildren(fragmento);
+}
+
+renderEquipo(estudio.equipo);
 const canales = document.getElementById("canales");
 function agregarCanal(texto, url) {
   const a = document.createElement("a");

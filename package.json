@@ -18,7 +18,8 @@
     "test:hero": "playwright test hero.spec.js",
     "test:encabezado": "playwright test encabezado.spec.js",
     "test:estudio": "playwright test estudio.spec.js",
-    "test:areas": "playwright test areas.spec.js"
+    "test:areas": "playwright test areas.spec.js",
+    "test:equipo": "playwright test equipo.spec.js"
   },
   "repository": {
     "type": "git",

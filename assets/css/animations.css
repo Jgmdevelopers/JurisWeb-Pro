@@ -449,3 +449,67 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DEL EQUIPO PROFESIONAL
+   ========================================= */
+
+.profesional-fotografia img {
+    transition:
+        transform 700ms var(--motion-ease);
+}
+
+.profesional-cta {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.profesional-linkedin {
+    transition: color 250ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .profesional-tarjeta:hover
+    .profesional-fotografia img {
+        transform: scale(1.05);
+    }
+
+    .profesional-cta:hover {
+        background: #dfc58e;
+        color: var(--navy);
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px rgba(16, 30, 48, 0.12);
+    }
+
+    .profesional-linkedin:hover {
+        color: var(--navy);
+    }
+
+    /* Evitar ampliar toda la tarjeta individual. */
+
+    .equipo-individual .profesional-tarjeta:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .profesional-fotografia img,
+    .profesional-cta,
+    .profesional-linkedin {
+        transition: none;
+    }
+
+    .profesional-tarjeta:hover
+    .profesional-fotografia img,
+
+    .profesional-cta:hover {
+        transform: none;
+    }
+}

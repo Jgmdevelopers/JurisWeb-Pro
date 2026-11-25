@@ -1,0 +1,35 @@
+{
+  "name": "jurisweb-pro",
+  "version": "0.2.0-dev",
+  "description": "Plantilla estática demostrativa para estudios jurídicos. Sin dependencias ni backend. Abrir index.html o ejecutar `python -m http.server 8000` y visitar http://localhost:8000.",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:responsive": "playwright test responsive.spec.js",
+    "test:navegacion": "playwright test navegacion.spec.js",
+    "test:animaciones": "playwright test animaciones.spec.js",
+    "test:contacto": "playwright test contacto.spec.js",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "serve:test": "http-server . -a 127.0.0.1 -p 8765 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jgmdevelopers/JurisWeb-Pro.git"
+  },
+  "keywords": [],
+  "author": "GM.DEV",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Jgmdevelopers/JurisWeb-Pro/issues"
+  },
+  "homepage": "https://github.com/Jgmdevelopers/JurisWeb-Pro#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "http-server": "14.1.1"
+  },
+  "private": true
+}

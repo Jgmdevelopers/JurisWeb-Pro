@@ -1,0 +1,19 @@
+# Dependencias
+node_modules/
+
+# Playwright
+playwright-report/
+test-results/
+playwright/.cache/
+blob-report/
+
+# Entorno
+.env
+.env.local
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Evidencias locales de diagnóstico
+evidencias-locales/

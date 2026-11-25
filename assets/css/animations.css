@@ -386,3 +386,66 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DE AREAS DE PRACTICA
+   ========================================= */
+
+.area-tarjeta::before {
+    transition: width 400ms var(--motion-ease);
+}
+
+.area-icono {
+    transition: transform 350ms var(--motion-ease);
+}
+
+.area-enlace {
+    transition: color 250ms ease;
+}
+
+.area-flecha {
+    transition: transform 300ms var(--motion-ease);
+}
+
+/* Interacciones con cursor */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .area-tarjeta:hover::before {
+        width: 100%;
+    }
+
+    .area-tarjeta:hover .area-icono {
+        transform: translateY(-3px) scale(1.12);
+    }
+
+    .area-enlace:hover {
+        color: var(--navy);
+    }
+
+    .area-enlace:hover .area-flecha {
+        transform: translateX(5px);
+    }
+}
+
+/* Navegación por teclado */
+
+.area-tarjeta:focus-within::before {
+    width: 100%;
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .area-tarjeta::before,
+    .area-icono,
+    .area-enlace,
+    .area-flecha {
+        transition: none;
+    }
+
+    .area-tarjeta:hover .area-icono,
+    .area-enlace:hover .area-flecha {
+        transform: none;
+    }
+}

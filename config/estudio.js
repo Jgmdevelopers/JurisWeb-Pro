@@ -13,9 +13,42 @@ window.ESTUDIO = {
   correo: "",
   direccion: "",
   areas: [
-    { titulo: "Derecho civil", descripcion: "Contratos y obligaciones." },
-    { titulo: "Derecho de familia", descripcion: "Asuntos familiares." },
-    { titulo: "Derecho laboral", descripcion: "Relaciones de trabajo." },
+    {
+      icono: "civil",
+      titulo: "Derecho civil",
+      descripcion:
+        "Asesoramiento en contratos, obligaciones, responsabilidad civil y relaciones entre particulares.",
+    },
+    {
+      icono: "familia",
+      titulo: "Derecho de familia",
+      descripcion:
+        "Orientación jurídica en asuntos familiares, cuidado personal, alimentos y acuerdos familiares.",
+    },
+    {
+      icono: "laboral",
+      titulo: "Derecho laboral",
+      descripcion:
+        "Asesoramiento en relaciones de trabajo, derechos laborales y resolución de conflictos.",
+    },
+    {
+      icono: "administrativo",
+      titulo: "Derecho administrativo",
+      descripcion:
+        "Orientación en procedimientos administrativos y relaciones con organismos públicos.",
+    },
+    {
+      icono: "penal",
+      titulo: "Derecho penal",
+      descripcion:
+        "Asesoramiento jurídico y asistencia profesional en asuntos de naturaleza penal.",
+    },
+    {
+      icono: "sucesiones",
+      titulo: "Sucesiones",
+      descripcion:
+        "Orientación en procesos sucesorios, cuestiones hereditarias y distribución de bienes.",
+    },
   ],
   equipo: [
     {

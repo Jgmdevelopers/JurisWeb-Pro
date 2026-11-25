@@ -18,7 +18,129 @@ function renderTarjetas(id, items) {
     cont.append(card);
   }
 }
-renderTarjetas("lista-areas", estudio.areas);
+/**
+ * Iconos permitidos para las áreas de práctica.
+ */
+const iconosAreasPermitidos = new Set([
+  "civil",
+  "familia",
+  "laboral",
+  "administrativo",
+  "penal",
+  "sucesiones",
+  "general",
+]);
+
+/**
+ * Genera las tarjetas de especialidades jurídicas
+ * desde la configuración del estudio.
+ */
+function renderAreas(areas) {
+  const contenedor = document.getElementById("lista-areas");
+
+  if (!contenedor || !Array.isArray(areas)) {
+    return;
+  }
+
+  const fragmento = document.createDocumentFragment();
+
+  const areasValidas = areas.filter(
+    (area) =>
+      area &&
+      typeof area.titulo === "string" &&
+      area.titulo.trim() &&
+      typeof area.descripcion === "string" &&
+      area.descripcion.trim(),
+  );
+
+  areasValidas.forEach((area, indice) => {
+    const tarjeta = document.createElement("article");
+
+    tarjeta.className = "area-tarjeta";
+
+    // Encabezado de la tarjeta.
+
+    const encabezado = document.createElement("div");
+
+    encabezado.className = "area-tarjeta-encabezado";
+
+    // Iconografía.
+
+    const nombreIcono = iconosAreasPermitidos.has(area.icono)
+      ? area.icono
+      : "general";
+
+    const icono = document.createElement("img");
+
+    icono.className = "area-icono";
+    icono.src = `assets/icons/areas/${nombreIcono}.svg`;
+    icono.alt = "";
+    icono.width = 48;
+    icono.height = 48;
+
+    // Numeración automática.
+
+    const numero = document.createElement("span");
+
+    numero.className = "area-numero";
+
+    numero.textContent = String(indice + 1).padStart(2, "0");
+
+    numero.setAttribute("aria-hidden", "true");
+
+    encabezado.append(icono, numero);
+
+    // Contenido.
+
+    const titulo = document.createElement("h3");
+
+    titulo.textContent = area.titulo;
+
+    const descripcion = document.createElement("p");
+
+    descripcion.textContent = area.descripcion;
+
+    // Enlace de consulta.
+
+    const enlace = document.createElement("a");
+
+    enlace.className = "area-enlace";
+    enlace.href = "#contacto";
+
+    enlace.setAttribute("aria-label", `Consultar sobre ${area.titulo}`);
+
+    enlace.textContent = "Consultar";
+
+    const flecha = document.createElement("span");
+
+    flecha.className = "area-flecha";
+    flecha.textContent = "→";
+    flecha.setAttribute("aria-hidden", "true");
+
+    enlace.append(flecha);
+
+    tarjeta.append(encabezado, titulo, descripcion, enlace);
+
+    fragmento.append(tarjeta);
+  });
+
+  // Estado alternativo sin especialidades configuradas.
+
+  if (!areasValidas.length) {
+    const mensaje = document.createElement("p");
+
+    mensaje.className = "areas-vacio";
+
+    mensaje.textContent =
+      "Las áreas de práctica se encuentran pendientes de configuración.";
+
+    fragmento.append(mensaje);
+  }
+
+  contenedor.replaceChildren(fragmento);
+}
+
+renderAreas(estudio.areas);
 renderTarjetas("lista-equipo", estudio.equipo);
 const canales = document.getElementById("canales");
 function agregarCanal(texto, url) {

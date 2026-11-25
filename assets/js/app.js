@@ -1,0 +1,10 @@
+'use strict';
+const estudio = window.ESTUDIO || {};
+document.querySelectorAll('[data-field]').forEach(el => {const valor=estudio[el.dataset.field];if(typeof valor==='string' && valor.trim())el.textContent=valor;});
+function renderTarjetas(id, items){const cont=document.getElementById(id);if(!cont||!Array.isArray(items))return;cont.replaceChildren();for(const item of items){const card=document.createElement('article'),h=document.createElement('h3'),p=document.createElement('p');h.textContent=item.titulo;p.textContent=item.descripcion;card.append(h,p);cont.append(card);}}
+renderTarjetas('lista-areas',estudio.areas);renderTarjetas('lista-equipo',estudio.equipo);
+const canales=document.getElementById('canales');
+function agregarCanal(texto,url){const a=document.createElement('a');a.className='btn';a.textContent=texto;a.href=url;canales.append(a);}
+if(canales){if(/^\d{8,15}$/.test(estudio.whatsapp||''))agregarCanal('WhatsApp','https://wa.me/'+estudio.whatsapp+'?text='+encodeURIComponent('Hola, quisiera coordinar una entrevista.'));if(/^\+?\d{7,15}$/.test(estudio.telefono||''))agregarCanal('Llamar','tel:'+estudio.telefono);if(/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(estudio.correo||''))agregarCanal('Correo','mailto:'+estudio.correo);if(canales.children.length)document.getElementById('datos-contacto').textContent=estudio.direccion||'Seleccione un canal de contacto.';}
+const menu=document.getElementById('menu'),nav=document.getElementById('navegacion');
+if(menu&&nav){const mq=matchMedia('(max-width:700px)');function sincronizar(){menu.hidden=!mq.matches;nav.hidden=mq.matches;menu.setAttribute('aria-expanded',String(!mq.matches));}sincronizar();mq.addEventListener('change',sincronizar);menu.addEventListener('click',()=>{nav.hidden=!nav.hidden;menu.setAttribute('aria-expanded',String(!nav.hidden));});nav.addEventListener('click',e=>{if(mq.matches&&e.target.closest('a'))sincronizar();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mq.matches&&!nav.hidden){sincronizar();menu.focus();}});}

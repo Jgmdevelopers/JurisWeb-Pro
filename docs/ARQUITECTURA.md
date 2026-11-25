@@ -1,0 +1,2 @@
+# Arquitectura
+HTML semántico para contenido base, CSS responsive, JavaScript sin dependencias para personalización y navegación. Sin PHP en v0.1. Los contactos externos solo se habilitan con configuración válida. Sin expedientes ni datos de clientes. En una etapa posterior, Laravel independiente para formularios protegidos y portal autenticado integrado a ADAPTA mediante API. No incluir secretos en configuración pública.

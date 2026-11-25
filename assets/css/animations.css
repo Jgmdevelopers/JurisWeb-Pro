@@ -222,3 +222,62 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+
+/* =========================================
+   ANIMACIONES DEL ENCABEZADO
+   ========================================= */
+
+@keyframes entradaIdentidad {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.header-premium .brand {
+    animation:
+        entradaIdentidad
+        650ms
+        var(--motion-ease)
+        both;
+}
+
+.brand-logo {
+    transition: transform 350ms var(--motion-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .brand:hover .brand-logo {
+        transform: scale(1.06);
+    }
+
+    .header-cta:hover {
+        background: #dfc58e;
+        color: var(--navy);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(16, 30, 48, 0.14);
+    }
+}
+
+.header-cta:active {
+    transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .header-premium .brand {
+        animation: none;
+    }
+
+    .brand:hover .brand-logo,
+    .header-cta:hover,
+    .header-cta:active {
+        transform: none;
+    }
+}

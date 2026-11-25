@@ -14,7 +14,8 @@
     "test:contacto": "playwright test contacto.spec.js",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
-    "serve:test": "http-server . -a 127.0.0.1 -p 8765 -c-1"
+    "serve:test": "http-server . -a 127.0.0.1 -p 8765 -c-1",
+    "test:hero": "playwright test hero.spec.js"
   },
   "repository": {
     "type": "git",

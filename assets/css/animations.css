@@ -187,3 +187,38 @@ nav a:focus-visible::after {
         scale: none;
     }
 }
+
+/* =========================================
+   ANIMACION CINEMATOGRAFICA DEL HERO
+   ========================================= */
+
+@keyframes acercamientoCinematografico {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+.hero::before {
+    transform-origin: center right;
+
+    animation:
+        acercamientoCinematografico
+        4.5s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero::before {
+        animation: none;
+        transform: none;
+    }
+}

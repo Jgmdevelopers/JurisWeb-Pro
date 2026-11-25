@@ -564,3 +564,207 @@ button {
     border-left: 2px solid var(--gold);
   }
 }
+/* =========================================
+   PRESENTACION INSTITUCIONAL PREMIUM V1
+   ========================================= */
+
+.estudio-premium {
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: var(--white);
+}
+
+.estudio-composicion {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+}
+
+/* Fotografía institucional */
+
+.estudio-fotografia {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+}
+
+.estudio-imagen-contenedor {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border-radius: 4px 4px 0 0;
+    background: var(--navy);
+}
+
+.estudio-imagen {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.estudio-imagen-contenedor::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+
+    border: 1px solid rgba(223, 197, 142, 0.55);
+
+    pointer-events: none;
+}
+
+.estudio-leyenda {
+    padding: 1rem;
+    background: var(--navy);
+    color: #dfc58e;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+
+    border-radius: 0 0 4px 4px;
+}
+
+/* Contenido editorial */
+
+.estudio-contenido {
+    min-width: 0;
+}
+
+.estudio-contenido h2 {
+    max-width: 16ch;
+    font-size: clamp(2.1rem, 4vw, 3.6rem);
+    color: var(--navy);
+    letter-spacing: -0.025em;
+}
+
+.estudio-separador {
+    width: 56px;
+    height: 3px;
+    margin: 1.6rem 0;
+    background: var(--gold);
+}
+
+.estudio-contenido p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.estudio-contenido p.estudio-introduccion {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--navy);
+}
+
+/* Llamada a la acción */
+
+.estudio-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    max-width: 100%;
+    margin-top: 1.2rem;
+    padding: 0.95rem 1.35rem;
+
+    color: var(--white);
+    background: var(--navy);
+
+    border: 1px solid var(--navy);
+    border-radius: 3px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Valores institucionales */
+
+.estudio-valores {
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+
+.estudio-valor {
+    position: relative;
+    overflow: hidden;
+
+    padding: clamp(1.5rem, 3vw, 2.4rem);
+
+    background: var(--paper);
+
+    border: 1px solid #e6e0d5;
+    border-top: 3px solid var(--gold);
+    border-radius: 4px;
+}
+
+.estudio-icono {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1.4rem;
+
+    color: #92703c;
+}
+
+.estudio-valor h3 {
+    color: var(--navy);
+    font-size: 1.45rem;
+    overflow-wrap: anywhere;
+}
+
+.estudio-valor p {
+    font-size: 0.94rem;
+    line-height: 1.8;
+}
+
+/* Tablets */
+
+@media (max-width: 900px) {
+
+    .estudio-composicion {
+        gap: 2rem;
+    }
+
+    .estudio-valores {
+        gap: 0.8rem;
+    }
+}
+
+/* Móviles */
+
+@media (max-width: 700px) {
+
+    .estudio-composicion {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .estudio-imagen-contenedor {
+        aspect-ratio: 4 / 3;
+    }
+
+    .estudio-contenido h2 {
+        max-width: none;
+    }
+
+    .estudio-valores {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 2.5rem;
+        gap: 1rem;
+    }
+
+    .estudio-leyenda {
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+    }
+
+    .estudio-cta {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

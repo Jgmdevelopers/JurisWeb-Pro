@@ -4,7 +4,10 @@ window.ESTUDIO = {
   subtitulo: "Asesoramiento legal",
   ciudad: "Ushuaia, Tierra del Fuego",
   presentacion:
-    "Presentación institucional a completar por el profesional responsable.",
+    "Cada situación jurídica merece una atención individual, responsable y comprometida.",
+
+  enfoque:
+    "Nuestro enfoque se basa en comprender las necesidades de cada persona y brindar información clara para la toma de decisiones.",
   telefono: "",
   whatsapp: "",
   correo: "",

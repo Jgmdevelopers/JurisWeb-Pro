@@ -14,7 +14,8 @@ function inicializarAnimaciones() {
   }
 
   const elementos = document.querySelectorAll(
-    ".section h2, .section .eyebrow, .grid article, details",
+    ".section h2, .section .eyebrow, .grid article, details, " +
+      ".estudio-fotografia, .estudio-contenido",
   );
 
   if (!elementos.length) {
@@ -39,6 +40,15 @@ function inicializarAnimaciones() {
   );
 
   elementos.forEach((elemento) => {
+    // Evitar animaciones duplicadas dentro
+    // de la presentación institucional.
+
+    if (
+      elemento.matches("h2, .eyebrow") &&
+      elemento.closest(".estudio-contenido")
+    ) {
+      return;
+    }
     // No ocultar elementos muy altos que podrían
     // no alcanzar el umbral de intersección.
     if (elemento.offsetHeight > window.innerHeight) {

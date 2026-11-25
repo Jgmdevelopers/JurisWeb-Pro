@@ -281,3 +281,108 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DEL ESTUDIO
+   ========================================= */
+
+.motion-ready .estudio-fotografia.reveal {
+    transform: translateX(-24px);
+}
+
+.motion-ready .estudio-contenido.reveal {
+    transform: translateX(24px);
+}
+
+.motion-ready .estudio-fotografia.reveal.is-visible,
+.motion-ready .estudio-contenido.reveal.is-visible,
+.motion-ready .estudio-contenido.reveal:focus-within {
+    opacity: 1;
+    transform: none;
+}
+
+/* Fotografía */
+
+.estudio-imagen {
+    transition: transform 700ms var(--motion-ease);
+}
+
+/* Iconos */
+
+.estudio-icono {
+    transition:
+        transform 350ms var(--motion-ease),
+        color 250ms ease;
+}
+
+/* Botón */
+
+.estudio-cta {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.estudio-cta span {
+    transition: transform 250ms ease;
+}
+
+/* Microinteracciones */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .estudio-fotografia:hover .estudio-imagen {
+        transform: scale(1.06);
+    }
+
+    .estudio-valor:hover .estudio-icono {
+        transform: translateY(-3px) scale(1.12);
+        color: #795a28;
+    }
+
+    .estudio-cta:hover {
+        background: #dfc58e;
+        color: var(--navy);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 30, 48, 0.12);
+    }
+
+    .estudio-cta:hover span {
+        transform: translateX(4px);
+    }
+}
+
+/* Evitar desbordamientos durante la entrada móvil */
+
+@media (max-width: 700px) {
+
+    .motion-ready .estudio-fotografia.reveal,
+    .motion-ready .estudio-contenido.reveal {
+        transform: translateY(20px);
+    }
+
+    .motion-ready .estudio-fotografia.reveal.is-visible,
+    .motion-ready .estudio-contenido.reveal.is-visible,
+    .motion-ready .estudio-contenido.reveal:focus-within {
+        transform: none;
+    }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .motion-ready .estudio-fotografia.reveal,
+    .motion-ready .estudio-contenido.reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .estudio-fotografia:hover .estudio-imagen,
+    .estudio-valor:hover .estudio-icono,
+    .estudio-cta:hover,
+    .estudio-cta:hover span {
+        transform: none;
+    }
+}

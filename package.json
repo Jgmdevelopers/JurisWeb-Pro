@@ -25,7 +25,9 @@
     "test:contacto-premium": "playwright test contacto-premium.spec.js",
     "test:footer": "playwright test footer.spec.js",
     "test:identidad": "playwright test identidad.spec.js",
-    "test:tema": "playwright test tema.spec.js"
+    "test:tema": "playwright test tema.spec.js",
+    "generar:iconografia": "node scripts/generar-iconografia.mjs",
+    "test:iconografia": "playwright test iconografia.spec.js"
   },
   "repository": {
     "type": "git",

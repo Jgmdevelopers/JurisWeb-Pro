@@ -18,6 +18,18 @@ window.ESTUDIO = {
 
     imagenEstudioAlt: "Imagen ilustrativa de un despacho jurídico.",
   },
+  // Tema corporativo institucional.
+
+  tema: {
+    preestablecido: "clasico",
+
+    colores: {},
+
+    tipografias: {
+      titulos: "georgia",
+      cuerpo: "sistema",
+    },
+  },
 
   presentacion:
     "Cada situación jurídica merece una atención individual, responsable y comprometida.",

@@ -695,3 +695,72 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DEL CONTACTO PREMIUM
+   ========================================= */
+
+.contacto-canal {
+    transition:
+        background-color 250ms ease,
+        border-color 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.contacto-canal-icono {
+    transition:
+        transform 350ms ease;
+}
+
+.contacto-canal-flecha {
+    transition:
+        transform 250ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .contacto-canal:hover {
+
+        background:
+            rgba(255, 255, 255, 0.08);
+
+        border-color: #dfc58e;
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .contacto-canal:hover
+    .contacto-canal-icono {
+        transform: scale(1.08);
+    }
+
+    .contacto-canal:hover
+    .contacto-canal-flecha {
+        transform: translateX(4px);
+    }
+}
+
+.contacto-canal:focus-visible {
+    outline: 2px solid #dfc58e;
+    outline-offset: 5px;
+}
+
+/* Movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contacto-canal,
+    .contacto-canal-icono,
+    .contacto-canal-flecha {
+        transition: none;
+    }
+
+    .contacto-canal:hover,
+    .contacto-canal:hover .contacto-canal-icono,
+    .contacto-canal:hover .contacto-canal-flecha {
+        transform: none;
+    }
+}

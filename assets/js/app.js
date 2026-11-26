@@ -664,31 +664,311 @@ function renderPreguntasFrecuentes(preguntas) {
 }
 
 renderPreguntasFrecuentes(estudio.preguntasFrecuentes);
-const canales = document.getElementById("canales");
-function agregarCanal(texto, url) {
-  const a = document.createElement("a");
-  a.className = "btn";
-  a.textContent = texto;
-  a.href = url;
-  canales.append(a);
+/**
+ * Normaliza los datos de contacto institucional.
+ */
+function normalizarTextoContacto(valor) {
+  return typeof valor === "string" ? valor.trim() : "";
 }
-if (canales) {
-  if (/^\d{8,15}$/.test(estudio.whatsapp || ""))
-    agregarCanal(
-      "WhatsApp",
-      "https://wa.me/" +
-        estudio.whatsapp +
-        "?text=" +
-        encodeURIComponent("Hola, quisiera coordinar una entrevista."),
+
+/**
+ * Valida un numero internacional de WhatsApp.
+ */
+function validarWhatsapp(valor) {
+  const numero = normalizarTextoContacto(valor);
+
+  return /^[1-9]\d{7,14}$/.test(numero) ? numero : "";
+}
+
+/**
+ * Valida un numero telefonico.
+ */
+function validarTelefono(valor) {
+  const numero = normalizarTextoContacto(valor);
+
+  return /^\+?\d{7,15}$/.test(numero) ? numero : "";
+}
+
+/**
+ * Valida el formato del correo institucional.
+ */
+function validarCorreoContacto(valor) {
+  const correo = normalizarTextoContacto(valor);
+
+  const patron = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  return correo.length <= 254 && patron.test(correo) ? correo : "";
+}
+
+/**
+ * Valida enlaces HTTPS hacia Google Maps.
+ */
+function validarMapaContacto(valor) {
+  const enlace = normalizarTextoContacto(valor);
+
+  if (!enlace) {
+    return "";
+  }
+
+  try {
+    const url = new URL(enlace);
+
+    const dominiosPermitidos = new Set([
+      "www.google.com",
+      "google.com",
+      "maps.google.com",
+      "maps.app.goo.gl",
+    ]);
+
+    if (
+      url.protocol !== "https:" ||
+      !dominiosPermitidos.has(url.hostname) ||
+      url.username ||
+      url.password ||
+      url.port
+    ) {
+      return "";
+    }
+
+    if (url.hostname === "google.com" || url.hostname === "www.google.com") {
+      if (url.pathname !== "/maps" && !url.pathname.startsWith("/maps/")) {
+        return "";
+      }
+    }
+
+    if (
+      url.hostname === "maps.app.goo.gl" &&
+      !/^\/[a-zA-Z0-9_-]+\/?$/.test(url.pathname)
+    ) {
+      return "";
+    }
+
+    return url.href;
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * Actualiza informacion institucional opcional.
+ */
+function mostrarDatoContacto(idContenedor, idTexto, valor) {
+  const contenedor = document.getElementById(idContenedor);
+
+  const texto = document.getElementById(idTexto);
+
+  if (!contenedor || !texto) {
+    return;
+  }
+
+  const contenido = normalizarTextoContacto(valor);
+
+  texto.textContent = contenido;
+
+  contenedor.hidden = !contenido;
+}
+
+/**
+ * Crea un canal de contacto seguro.
+ *
+ * Las rutas de iconos y los protocolos se definen
+ * internamente, no desde la configuracion.
+ */
+function crearCanalContacto({
+  tipo,
+  titulo,
+  descripcion,
+  url,
+  externo = false,
+}) {
+  const iconosPermitidos = new Set([
+    "whatsapp",
+    "telefono",
+    "correo",
+    "ubicacion",
+  ]);
+
+  if (!iconosPermitidos.has(tipo)) {
+    return null;
+  }
+
+  const enlace = document.createElement("a");
+
+  enlace.className = "contacto-canal";
+
+  enlace.href = url;
+
+  if (externo) {
+    enlace.target = "_blank";
+    enlace.rel = "noopener noreferrer";
+
+    enlace.setAttribute(
+      "aria-label",
+      `${titulo}: ${descripcion} (nueva pestaña)`,
     );
-  if (/^\+?\d{7,15}$/.test(estudio.telefono || ""))
-    agregarCanal("Llamar", "tel:" + estudio.telefono);
-  if (/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(estudio.correo || ""))
-    agregarCanal("Correo", "mailto:" + estudio.correo);
-  if (canales.children.length)
-    document.getElementById("datos-contacto").textContent =
-      estudio.direccion || "Seleccione un canal de contacto.";
+  }
+
+  /* Iconografia */
+
+  const icono = document.createElement("img");
+
+  icono.className = "contacto-canal-icono";
+
+  icono.src = `assets/icons/contacto/${tipo}.svg`;
+
+  icono.alt = "";
+  icono.width = 36;
+  icono.height = 36;
+
+  /* Informacion del canal */
+
+  const contenido = document.createElement("div");
+
+  contenido.className = "contacto-canal-contenido";
+
+  const nombre = document.createElement("span");
+
+  nombre.className = "contacto-canal-titulo";
+
+  nombre.textContent = titulo;
+
+  const detalle = document.createElement("span");
+
+  detalle.className = "contacto-canal-descripcion";
+
+  detalle.textContent = descripcion;
+
+  contenido.append(nombre, detalle);
+
+  /* Indicador de accion */
+
+  const flecha = document.createElement("span");
+
+  flecha.className = "contacto-canal-flecha";
+
+  flecha.textContent = externo ? "↗" : "→";
+
+  flecha.setAttribute("aria-hidden", "true");
+
+  enlace.append(icono, contenido, flecha);
+
+  return enlace;
 }
+
+/**
+ * Renderiza la informacion institucional
+ * y los canales de contacto configurados.
+ */
+function renderContacto(configuracion) {
+  const canales = document.getElementById("canales");
+
+  const estadoVacio = document.getElementById("contacto-vacio");
+
+  if (!canales || !estadoVacio) {
+    return;
+  }
+
+  const datos = configuracion || {};
+
+  const fragmento = document.createDocumentFragment();
+
+  /* Validacion de datos */
+
+  const whatsapp = validarWhatsapp(datos.whatsapp);
+
+  const telefono = validarTelefono(datos.telefono);
+
+  const correo = validarCorreoContacto(datos.correo);
+
+  const mapa = validarMapaContacto(datos.mapaUrl);
+
+  const direccion = normalizarTextoContacto(datos.direccion);
+
+  /* Mensaje inicial de WhatsApp */
+
+  const mensajeWhatsapp = (
+    normalizarTextoContacto(datos.mensajeWhatsapp) ||
+    "Hola, quisiera coordinar una entrevista."
+  ).slice(0, 500);
+
+  /* Canales disponibles */
+
+  const canalesConfigurados = [];
+
+  if (whatsapp) {
+    canalesConfigurados.push({
+      tipo: "whatsapp",
+      titulo: "WhatsApp",
+      descripcion: "Coordinar una entrevista",
+      url:
+        "https://wa.me/" +
+        whatsapp +
+        "?text=" +
+        encodeURIComponent(mensajeWhatsapp),
+      externo: true,
+    });
+  }
+
+  if (telefono) {
+    canalesConfigurados.push({
+      tipo: "telefono",
+      titulo: "Teléfono",
+      descripcion: telefono,
+      url: `tel:${telefono}`,
+    });
+  }
+
+  if (correo) {
+    canalesConfigurados.push({
+      tipo: "correo",
+      titulo: "Correo electrónico",
+      descripcion: correo,
+      url: `mailto:${correo}`,
+    });
+  }
+
+  if (mapa) {
+    canalesConfigurados.push({
+      tipo: "ubicacion",
+      titulo: "Cómo llegar",
+      descripcion: direccion || "Consultar ubicación",
+      url: mapa,
+      externo: true,
+    });
+  }
+
+  canalesConfigurados.forEach((canal) => {
+    const elemento = crearCanalContacto(canal);
+
+    if (elemento) {
+      fragmento.append(elemento);
+    }
+  });
+
+  canales.replaceChildren(fragmento);
+
+  canales.hidden = canales.children.length === 0;
+
+  estadoVacio.hidden = canales.children.length > 0;
+
+  /* Informacion institucional opcional */
+
+  mostrarDatoContacto("contacto-direccion", "contacto-direccion", direccion);
+
+  mostrarDatoContacto(
+    "contacto-horario",
+    "contacto-horario-texto",
+    datos.horarioAtencion,
+  );
+
+  mostrarDatoContacto(
+    "contacto-modalidad",
+    "contacto-modalidad-texto",
+    datos.modalidadAtencion,
+  );
+}
+
+renderContacto(estudio);
 const menu = document.getElementById("menu"),
   nav = document.getElementById("navegacion");
 if (menu && nav) {

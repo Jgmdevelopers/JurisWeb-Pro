@@ -557,20 +557,119 @@
         </div>
       </section>
 
-      <section class="contact section" id="contacto">
+      <section id="contacto" class="section contacto-premium">
         <div class="wrap">
-          <p class="eyebrow">05 / CONTACTO</p>
-          <h2>Coordine una entrevista</h2>
-          <p data-field="ciudad">Ushuaia</p>
-          <p id="datos-contacto">
-            Canales de contacto pendientes de configuración.
-          </p>
-          <div id="canales"></div>
-          <p class="note">
-            No envíe expedientes, datos sensibles ni documentación por el
-            contacto inicial. La comunicación inicial no implica aceptación del
-            caso.
-          </p>
+          <div class="contacto-composicion">
+            <!-- Presentacion institucional -->
+
+            <div class="contacto-presentacion">
+              <p class="eyebrow">06 / CONTACTO</p>
+
+              <h2>Toda solución comienza con una conversación.</h2>
+
+              <div class="contacto-separador" aria-hidden="true"></div>
+
+              <p class="contacto-introduccion">
+                Coordiná una entrevista profesional con el estudio jurídico para
+                recibir orientación sobre tu situación.
+              </p>
+
+              <!-- Informacion institucional -->
+
+              <div class="contacto-informacion">
+                <div class="contacto-dato">
+                  <img
+                    src="assets/icons/contacto/ubicacion.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                  />
+
+                  <div>
+                    <h3>Ubicación</h3>
+
+                    <p data-field="ciudad">Ushuaia, Tierra del Fuego</p>
+
+                    <p id="contacto-direccion" hidden></p>
+                  </div>
+                </div>
+
+                <div class="contacto-dato" id="contacto-horario" hidden>
+                  <img
+                    src="assets/icons/contacto/horario.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                  />
+
+                  <div>
+                    <h3>Horarios de atención</h3>
+                    <p id="contacto-horario-texto"></p>
+                  </div>
+                </div>
+
+                <div class="contacto-dato" id="contacto-modalidad" hidden>
+                  <img
+                    src="assets/icons/contacto/modalidad.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                  />
+
+                  <div>
+                    <h3>Modalidad de atención</h3>
+                    <p id="contacto-modalidad-texto"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Canales de comunicacion -->
+
+            <div class="contacto-canales">
+              <h3>Canales de atención</h3>
+
+              <div id="canales" class="contacto-lista"></div>
+
+              <!-- Estado sin configurar -->
+
+              <div id="contacto-vacio" class="contacto-vacio">
+                <img
+                  src="assets/icons/contacto/consulta.svg"
+                  alt=""
+                  width="52"
+                  height="52"
+                />
+
+                <h4>Contacto institucional</h4>
+
+                <p id="datos-contacto">
+                  Canales de contacto pendientes de configuración.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacidad -->
+
+          <div class="contacto-privacidad">
+            <img
+              src="assets/icons/contacto/privacidad.svg"
+              alt=""
+              width="40"
+              height="40"
+            />
+
+            <div>
+              <h3>Privacidad y confidencialidad</h3>
+
+              <p class="note">
+                No compartas expedientes, datos sensibles ni documentación
+                durante el contacto inicial. La comunicación inicial no implica
+                aceptación del caso ni contratación del servicio profesional.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>

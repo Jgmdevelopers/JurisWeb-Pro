@@ -8,10 +8,21 @@ window.ESTUDIO = {
 
   enfoque:
     "Nuestro enfoque se basa en comprender las necesidades de cada persona y brindar información clara para la toma de decisiones.",
+  // Informacion de contacto institucional.
+
   telefono: "",
   whatsapp: "",
   correo: "",
   direccion: "",
+
+  // Configuracion adicional de contacto.
+
+  horarioAtencion: "",
+  modalidadAtencion: "",
+  mapaUrl: "",
+
+  mensajeWhatsapp:
+    "Hola, quisiera coordinar una entrevista con el estudio jurídico.",
   areas: [
     {
       icono: "civil",

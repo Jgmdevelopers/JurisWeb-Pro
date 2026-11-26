@@ -1487,7 +1487,7 @@ button {
   text-decoration: none;
 }
 
-.consulta-cta span {
+.consulta-cta span[aria-hidden="true"] {
   display: inline-block;
   font-size: 1.2rem;
 }
@@ -1723,7 +1723,7 @@ button {
   text-decoration: none;
 }
 
-.preguntas-cta span {
+.preguntas-cta span[aria-hidden="true"] {
   display: inline-block;
 }
 
@@ -2499,7 +2499,7 @@ button {
   text-decoration: none;
 }
 
-.footer-volver span {
+.footer-volver span[aria-hidden="true"] {
   color: var(--acento-claro);
   font-size: 1.1rem;
 }

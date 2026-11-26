@@ -30,6 +30,146 @@ window.ESTUDIO = {
       cuerpo: "sistema",
     },
   },
+  // Configuracion editorial institucional.
+
+  textos: {
+    encabezado: {
+      inicio: "Inicio",
+      estudio: "El estudio",
+      areas: "Áreas",
+      equipo: "Equipo",
+      contacto: "Contacto",
+      cta: "Solicitar entrevista",
+    },
+
+    hero: {
+      etiqueta: "ASESORAMIENTO JURÍDICO",
+
+      titulo: "Claridad jurídica para decisiones importantes.",
+
+      descripcion:
+        "Un espacio de asesoramiento profesional, con atención personalizada y respeto por la confidencialidad.",
+
+      ctaPrincipal: "Solicitar una entrevista",
+
+      ctaSecundaria: "Conocer áreas de práctica",
+    },
+
+    estudio: {
+      etiqueta: "01 / EL ESTUDIO",
+
+      titulo: "Una mirada profesional y cercana.",
+
+      leyenda: "Compromiso · Confianza · Rigor",
+
+      cta: "Conocer nuestras áreas de práctica",
+
+      valores: {
+        confidencialidad: {
+          titulo: "Confidencialidad",
+
+          descripcion:
+            "Tratamiento responsable y respetuoso de la información de cada consulta.",
+        },
+
+        comunicacion: {
+          titulo: "Comunicación",
+
+          descripcion:
+            "Información clara sobre las alternativas disponibles y las etapas de cada asunto.",
+        },
+
+        rigor: {
+          titulo: "Rigor profesional",
+
+          descripcion:
+            "Evaluación individual y responsable de las circunstancias de cada consulta.",
+        },
+      },
+    },
+
+    areas: {
+      etiqueta: "02 / ÁREAS DE PRÁCTICA",
+
+      titulo: "Soluciones jurídicas para cada necesidad.",
+
+      descripcion:
+        "Asesoramiento profesional en diferentes ámbitos del derecho, con un enfoque individual y responsable.",
+    },
+
+    equipo: {
+      etiqueta: "03 / PROFESIONALES",
+
+      titulo: "Compromiso profesional y atención personalizada.",
+
+      descripcion:
+        "Conocé a quienes estarán a cargo de brindar orientación y acompañamiento jurídico.",
+    },
+
+    consulta: {
+      etiqueta: "04 / PROCESO DE CONSULTA",
+
+      titulo: "Un camino claro desde el primer contacto.",
+
+      descripcion:
+        "Conocé las etapas para iniciar una consulta y recibir orientación profesional.",
+
+      cta: "Solicitar una entrevista",
+    },
+
+    preguntas: {
+      etiqueta: "05 / PREGUNTAS FRECUENTES",
+
+      titulo: "Información clara antes de dar el primer paso.",
+
+      descripcion:
+        "Encontrá respuestas a las dudas habituales sobre la atención y el asesoramiento profesional.",
+
+      contactoTitulo: "¿Necesitás más información?",
+
+      contactoDescripcion:
+        "Comunicáte con el estudio para coordinar una entrevista profesional.",
+
+      cta: "Solicitar una entrevista",
+    },
+
+    contacto: {
+      etiqueta: "06 / CONTACTO",
+
+      titulo: "Toda solución comienza con una conversación.",
+
+      descripcion:
+        "Coordiná una entrevista profesional con el estudio jurídico para recibir orientación sobre tu situación.",
+
+      ubicacion: "Ubicación",
+
+      horarios: "Horarios de atención",
+
+      modalidad: "Modalidad de atención",
+
+      canales: "Canales de atención",
+
+      tituloAlternativo: "Contacto institucional",
+    },
+
+    footer: {
+      navegacionTitulo: "Explorá el sitio",
+
+      informacionTitulo: "Información institucional",
+
+      inicio: "Inicio",
+      estudio: "El estudio",
+      areas: "Áreas de práctica",
+      equipo: "Equipo profesional",
+      consulta: "Proceso de consulta",
+      preguntas: "Preguntas frecuentes",
+      contacto: "Contacto",
+
+      cta: "Solicitar una entrevista",
+
+      volver: "Volver al inicio",
+    },
+  },
 
   presentacion:
     "Cada situación jurídica merece una atención individual, responsable y comprometida.",

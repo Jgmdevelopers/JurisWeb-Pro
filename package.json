@@ -27,7 +27,8 @@
     "test:identidad": "playwright test identidad.spec.js",
     "test:tema": "playwright test tema.spec.js",
     "generar:iconografia": "node scripts/generar-iconografia.mjs",
-    "test:iconografia": "playwright test iconografia.spec.js"
+    "test:iconografia": "playwright test iconografia.spec.js",
+    "test:editorial": "playwright test editorial.spec.js"
   },
   "repository": {
     "type": "git",

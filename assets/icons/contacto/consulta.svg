@@ -5,8 +5,8 @@
     stroke-width="1.7"
     stroke-linecap="round"
     stroke-linejoin="round">
-    
+
         <path d="M5 6H43V33H21L9 43V33H5Z"/>
         <path d="M13 15H35M13 22H30"/>
-    
+
 </svg>

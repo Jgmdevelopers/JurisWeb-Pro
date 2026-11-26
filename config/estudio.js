@@ -171,6 +171,53 @@ window.ESTUDIO = {
     },
   },
 
+  // Configuracion SEO institucional.
+
+  seo: {
+    titulo: "Estudio Jurídico | Demostración",
+
+    descripcion:
+      "Demostración de una página institucional para estudios jurídicos.",
+
+    urlCanonica: "",
+
+    idioma: "es-AR",
+
+    imagenSocial: "",
+
+    imagenSocialAlt: "",
+
+    openGraph: {
+      titulo: "",
+
+      descripcion: "",
+
+      nombreSitio: "",
+
+      tipo: "website",
+    },
+
+    twitter: {
+      tarjeta: "summary_large_image",
+    },
+
+    paginas: {
+      privacidad: {
+        titulo: "Privacidad",
+
+        descripcion:
+          "Información institucional sobre privacidad y tratamiento de datos.",
+      },
+
+      avisoLegal: {
+        titulo: "Aviso legal",
+
+        descripcion:
+          "Información sobre el alcance y las condiciones de uso del sitio institucional.",
+      },
+    },
+  },
+
   presentacion:
     "Cada situación jurídica merece una atención individual, responsable y comprometida.",
 

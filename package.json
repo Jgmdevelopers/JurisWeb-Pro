@@ -28,7 +28,12 @@
     "test:tema": "playwright test tema.spec.js",
     "generar:iconografia": "node scripts/generar-iconografia.mjs",
     "test:iconografia": "playwright test iconografia.spec.js",
-    "test:editorial": "playwright test editorial.spec.js"
+    "test:editorial": "playwright test editorial.spec.js",
+    "generar:seo": "node scripts/generar-seo.mjs",
+    "validar:seo": "node scripts/generar-seo.mjs --check",
+    "test:seo:unit": "node --test tests/unit/seo.test.mjs",
+    "test:seo:e2e": "playwright test seo.spec.js",
+    "test:seo": "npm run test:seo:unit && npm run test:seo:e2e"
   },
   "repository": {
     "type": "git",

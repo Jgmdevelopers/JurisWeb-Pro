@@ -50,6 +50,43 @@ window.ESTUDIO = {
         "Orientación en procesos sucesorios, cuestiones hereditarias y distribución de bienes.",
     },
   ],
+  preguntasFrecuentes: [
+    {
+      pregunta: "¿El sitio brinda asesoramiento legal?",
+      respuesta:
+        "No. El contenido de este sitio es informativo y no sustituye una consulta profesional.",
+    },
+    {
+      pregunta: "¿Cómo puedo solicitar una entrevista?",
+      respuesta:
+        "Podés comunicarte con el estudio mediante los canales de contacto habilitados para coordinar una entrevista.",
+    },
+    {
+      pregunta: "¿La primera consulta tiene algún costo?",
+      respuesta:
+        "Las condiciones de atención y los honorarios correspondientes serán informados por el estudio antes de confirmar la entrevista.",
+    },
+    {
+      pregunta: "¿Puedo enviar documentación?",
+      respuesta:
+        "Coordiná previamente un canal adecuado con el profesional. Evitá compartir documentación o información sensible durante el primer contacto.",
+    },
+    {
+      pregunta: "¿Se realizan consultas virtuales?",
+      respuesta:
+        "La disponibilidad de atención presencial o virtual deberá consultarse directamente con el estudio.",
+    },
+    {
+      pregunta: "¿Cómo se determinan los honorarios?",
+      respuesta:
+        "Los honorarios y las condiciones del servicio serán informados según las características del asunto y la normativa aplicable.",
+    },
+    {
+      pregunta: "¿Se puede garantizar un resultado?",
+      respuesta:
+        "No. Cada situación requiere una evaluación profesional individual y no es posible garantizar un resultado jurídico determinado.",
+    },
+  ],
   procesoConsulta: [
     {
       icono: "contacto",

@@ -564,6 +564,106 @@ function renderProcesoConsulta(etapas) {
 }
 
 renderProcesoConsulta(estudio.procesoConsulta);
+/**
+ * Renderiza las preguntas frecuentes
+ * desde la configuracion institucional.
+ */
+function renderPreguntasFrecuentes(preguntas) {
+  const contenedor = document.getElementById("lista-preguntas");
+
+  if (!contenedor || !Array.isArray(preguntas)) {
+    return;
+  }
+
+  const preguntasValidas = preguntas.filter(
+    (item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item) &&
+      typeof item.pregunta === "string" &&
+      item.pregunta.trim() &&
+      typeof item.respuesta === "string" &&
+      item.respuesta.trim(),
+  );
+
+  const fragmento = document.createDocumentFragment();
+
+  preguntasValidas.forEach((item, indice) => {
+    /* Contenedor desplegable */
+
+    const detalle = document.createElement("details");
+
+    detalle.className = "pregunta-item";
+
+    detalle.setAttribute("name", "preguntas-frecuentes");
+
+    /* Encabezado interactivo */
+
+    const resumen = document.createElement("summary");
+
+    /* Numeracion */
+
+    const numero = document.createElement("span");
+
+    numero.className = "pregunta-numero";
+
+    numero.textContent = String(indice + 1).padStart(2, "0");
+
+    numero.setAttribute("aria-hidden", "true");
+
+    /* Pregunta */
+
+    const titulo = document.createElement("span");
+
+    titulo.className = "pregunta-titulo";
+
+    titulo.textContent = item.pregunta.trim();
+
+    /* Indicador visual */
+
+    const indicador = document.createElement("span");
+
+    indicador.className = "pregunta-indicador";
+
+    indicador.setAttribute("aria-hidden", "true");
+
+    resumen.append(numero, titulo, indicador);
+
+    /* Respuesta */
+
+    const respuesta = document.createElement("div");
+
+    respuesta.className = "pregunta-respuesta";
+
+    const texto = document.createElement("p");
+
+    texto.textContent = item.respuesta.trim();
+
+    respuesta.append(texto);
+
+    /* Integracion */
+
+    detalle.append(resumen, respuesta);
+
+    fragmento.append(detalle);
+  });
+
+  /* Estado vacio */
+  if (!preguntasValidas.length) {
+    const mensaje = document.createElement("p");
+
+    mensaje.className = "preguntas-vacio";
+
+    mensaje.textContent =
+      "Las preguntas frecuentes se encuentran pendientes de configuración.";
+
+    fragmento.append(mensaje);
+  }
+
+  contenedor.replaceChildren(fragmento);
+}
+
+renderPreguntasFrecuentes(estudio.preguntasFrecuentes);
 const canales = document.getElementById("canales");
 function agregarCanal(texto, url) {
   const a = document.createElement("a");

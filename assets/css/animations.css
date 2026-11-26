@@ -595,3 +595,103 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DE PREGUNTAS FRECUENTES
+   ========================================= */
+
+.pregunta-item {
+    transition:
+        border-color 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.pregunta-indicador::after {
+    transition:
+        transform 250ms ease,
+        opacity 250ms ease;
+}
+
+.pregunta-item[open] .pregunta-respuesta {
+    animation:
+        entradaRespuesta 300ms ease both;
+}
+
+@keyframes entradaRespuesta {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.preguntas-cta {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        transform 250ms ease;
+}
+
+.preguntas-cta span {
+    transition:
+        transform 250ms ease;
+}
+
+/* Microinteracciones */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .pregunta-item:hover {
+        border-color: var(--gold);
+    }
+
+    .preguntas-cta:hover {
+        background: var(--white);
+        color: var(--navy);
+
+        transform: translateY(-2px);
+    }
+
+    .preguntas-cta:hover span {
+        transform: translateX(4px);
+    }
+}
+
+/* Navegacion mediante teclado */
+
+.pregunta-item summary:focus-visible {
+    outline: 2px solid #795a28;
+    outline-offset: -4px;
+
+    border-radius: 3px;
+}
+
+.preguntas-cta:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 4px;
+}
+
+/* Movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pregunta-item,
+    .pregunta-indicador::after,
+    .preguntas-cta,
+    .preguntas-cta span {
+        transition: none;
+    }
+
+    .pregunta-item[open] .pregunta-respuesta {
+        animation: none;
+    }
+
+    .preguntas-cta:hover,
+    .preguntas-cta:hover span {
+        transform: none;
+    }
+}

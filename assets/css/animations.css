@@ -137,13 +137,13 @@ nav a:focus-visible::after {
         translate: 0 -5px;
         scale: 1.015;
         border-color: var(--gold);
-        box-shadow: 0 12px 28px rgba(16, 30, 48, 0.12);
+        box-shadow: 0 12px 28px rgba(var(--principal-rgb), 0.12);
     }
 
     .btn:hover {
         transform: translateY(-3px);
-        background-color: #e9d4a6;
-        box-shadow: 0 8px 22px rgba(16, 30, 48, 0.18);
+        background-color: var(--acento-hover);
+        box-shadow: 0 8px 22px rgba(var(--principal-rgb), 0.18);
     }
 
     nav a:hover {
@@ -258,10 +258,10 @@ nav a:focus-visible::after {
     }
 
     .header-cta:hover {
-        background: #dfc58e;
+        background: var(--acento-claro);
         color: var(--navy);
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(16, 30, 48, 0.14);
+        box-shadow: 0 5px 15px rgba(var(--principal-rgb), 0.14);
     }
 }
 
@@ -338,14 +338,14 @@ nav a:focus-visible::after {
 
     .estudio-valor:hover .estudio-icono {
         transform: translateY(-3px) scale(1.12);
-        color: #795a28;
+        color: var(--acento-oscuro);
     }
 
     .estudio-cta:hover {
-        background: #dfc58e;
+        background: var(--acento-claro);
         color: var(--navy);
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(16, 30, 48, 0.12);
+        box-shadow: 0 8px 20px rgba(var(--principal-rgb), 0.12);
     }
 
     .estudio-cta:hover span {
@@ -478,13 +478,13 @@ nav a:focus-visible::after {
     }
 
     .profesional-cta:hover {
-        background: #dfc58e;
+        background: var(--acento-claro);
         color: var(--navy);
 
         transform: translateY(-2px);
 
         box-shadow:
-            0 8px 20px rgba(16, 30, 48, 0.12);
+            0 8px 20px rgba(var(--principal-rgb), 0.12);
     }
 
     .profesional-linkedin:hover {
@@ -548,10 +548,10 @@ nav a:focus-visible::after {
     .consulta-etapa:hover
     .consulta-icono-contenedor {
 
-        border-color: #dfc58e;
+        border-color: var(--acento-claro);
 
         box-shadow:
-            0 0 0 9px rgba(185, 154, 96, 0.12);
+            0 0 0 9px rgba(var(--acento-rgb), 0.12);
     }
 
     .consulta-etapa:hover .consulta-icono {
@@ -565,7 +565,7 @@ nav a:focus-visible::after {
         transform: translateY(-2px);
 
         box-shadow:
-            0 8px 24px rgba(0, 0, 0, 0.2);
+            0 8px 24px rgba(var(--negro-rgb), 0.2);
     }
 
     .consulta-cta:hover span {
@@ -664,7 +664,7 @@ nav a:focus-visible::after {
 /* Navegacion mediante teclado */
 
 .pregunta-item summary:focus-visible {
-    outline: 2px solid #795a28;
+    outline: 2px solid var(--acento-oscuro);
     outline-offset: -4px;
 
     border-radius: 3px;
@@ -722,14 +722,14 @@ nav a:focus-visible::after {
     .contacto-canal:hover {
 
         background:
-            rgba(255, 255, 255, 0.08);
+            rgba(var(--blanco-rgb), 0.08);
 
-        border-color: #dfc58e;
+        border-color: var(--acento-claro);
 
         transform: translateY(-3px);
 
         box-shadow:
-            0 10px 25px rgba(0, 0, 0, 0.15);
+            0 10px 25px rgba(var(--negro-rgb), 0.15);
     }
 
     .contacto-canal:hover
@@ -744,7 +744,7 @@ nav a:focus-visible::after {
 }
 
 .contacto-canal:focus-visible {
-    outline: 2px solid #dfc58e;
+    outline: 2px solid var(--acento-claro);
     outline-offset: 5px;
 }
 

@@ -1,0 +1,61 @@
+/* =========================================
+   JURISWEB PRO - IDENTIDAD VISUAL
+   GM.DEV
+   ========================================= */
+
+:root {
+
+  /* Colores corporativos principales */
+
+  --navy: #101e30;
+  --blue: #1c3049;
+  --gold: #b99a60;
+  --paper: #f5f2eb;
+  --ink: #172637;
+  --white: #fff;
+  --muted: #526174;
+
+  /* Variaciones del color principal */
+
+  --principal-intermedio: #172a40;
+  --principal-profundo: #0b1522;
+
+  /* Variaciones del acento */
+
+  --acento-claro: #dfc58e;
+  --acento-hover: #e9d4a6;
+  --acento-oscuro: #795a28;
+  --acento-intermedio: #92703c;
+
+  /* Textos sobre fondos oscuros */
+
+  --texto-inverso: #e0e6ed;
+  --texto-inverso-secundario: #d5dce5;
+  --texto-inverso-suave: #b6c3d3;
+
+  /* Bordes y separadores */
+
+  --borde: #dedbd4;
+  --borde-suave: #e6e0d5;
+  --borde-alternativo: #dcd7cd;
+  --borde-neutro: #ddd;
+  --borde-claro: #e8e4dc;
+
+  /* Accesibilidad */
+
+  --color-foco: #b76d14;
+
+  /* Componentes RGB para transparencias */
+
+  --principal-rgb: 16, 30, 48;
+  --principal-profundo-rgb: 10, 20, 34;
+  --acento-rgb: 185, 154, 96;
+  --acento-claro-rgb: 223, 197, 142;
+  --blanco-rgb: 255, 255, 255;
+  --negro-rgb: 0, 0, 0;
+
+  /* Tipografias institucionales */
+
+  --fuente-titulos: Georgia, serif;
+  --fuente-cuerpo: system-ui, sans-serif;
+}

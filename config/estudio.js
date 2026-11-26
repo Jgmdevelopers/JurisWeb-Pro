@@ -1,8 +1,24 @@
 // Datos demostrativos. No publicar hasta validar identidad, matrícula y jurisdicción.
 window.ESTUDIO = {
   nombre: "Estudio Jurídico",
+
   subtitulo: "Asesoramiento legal",
+
   ciudad: "Ushuaia, Tierra del Fuego",
+  // Identidad visual institucional.
+
+  identidad: {
+    logo: "assets/images/branding/logo.svg",
+
+    favicon: "assets/images/branding/logo.svg",
+
+    imagenHero: "assets/images/hero/despacho-juridico.webp",
+
+    imagenEstudio: "assets/images/estudio/estudio-juridico.webp",
+
+    imagenEstudioAlt: "Imagen ilustrativa de un despacho jurídico.",
+  },
+
   presentacion:
     "Cada situación jurídica merece una atención individual, responsable y comprometida.",
 

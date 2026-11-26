@@ -23,7 +23,8 @@
     "test:consulta": "playwright test consulta.spec.js",
     "test:preguntas": "playwright test preguntas.spec.js",
     "test:contacto-premium": "playwright test contacto-premium.spec.js",
-    "test:footer": "playwright test footer.spec.js"
+    "test:footer": "playwright test footer.spec.js",
+    "test:identidad": "playwright test identidad.spec.js"
   },
   "repository": {
     "type": "git",

@@ -252,7 +252,10 @@ button {
   inset: 0;
   z-index: -2;
 
-  background-image: url("../images/hero/despacho-juridico.webp");
+  background-image: var(
+    --imagen-hero,
+    url("../images/hero/despacho-juridico.webp")
+  );
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -2527,11 +2530,9 @@ button {
   margin-top: 3rem;
   padding: 1.5rem 0;
 
-  border-top:
-    1px solid rgba(185, 154, 96, 0.2);
+  border-top: 1px solid rgba(185, 154, 96, 0.2);
 
-  border-bottom:
-    1px solid rgba(185, 154, 96, 0.2);
+  border-bottom: 1px solid rgba(185, 154, 96, 0.2);
 }
 
 .footer-aviso img {
@@ -2626,10 +2627,8 @@ a.footer-firma:hover {
 /* Tablets */
 
 @media (max-width: 1024px) {
-
   .footer-composicion {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 2.5rem;
   }
@@ -2642,7 +2641,6 @@ a.footer-firma:hover {
 /* Moviles */
 
 @media (max-width: 700px) {
-
   .footer-premium {
     padding: 3rem 0 1.5rem;
   }

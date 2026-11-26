@@ -449,6 +449,121 @@ function renderEquipo(profesionales) {
 }
 
 renderEquipo(estudio.equipo);
+/**
+ * Iconografia permitida para el proceso de consulta.
+ */
+const iconosConsultaPermitidos = new Set([
+  "contacto",
+  "evaluacion",
+  "orientacion",
+  "acompanamiento",
+  "general",
+]);
+
+/**
+ * Renderiza las etapas configuradas del proceso
+ * de consulta juridica.
+ */
+function renderProcesoConsulta(etapas) {
+  const contenedor = document.getElementById("lista-consulta");
+
+  const mensajeVacio = document.getElementById("consulta-vacio");
+
+  if (!contenedor || !Array.isArray(etapas)) {
+    return;
+  }
+
+  const etapasValidas = etapas.filter(
+    (etapa) =>
+      etapa &&
+      typeof etapa === "object" &&
+      !Array.isArray(etapa) &&
+      typeof etapa.titulo === "string" &&
+      etapa.titulo.trim() &&
+      typeof etapa.descripcion === "string" &&
+      etapa.descripcion.trim(),
+  );
+
+  const fragmento = document.createDocumentFragment();
+
+  etapasValidas.forEach((etapa, indice) => {
+    const elemento = document.createElement("li");
+
+    elemento.className = "consulta-etapa";
+
+    /* Contenedor del icono */
+
+    const contenedorIcono = document.createElement("div");
+
+    contenedorIcono.className = "consulta-icono-contenedor";
+
+    /* Iconografia segura */
+
+    const nombreIcono = iconosConsultaPermitidos.has(etapa.icono)
+      ? etapa.icono
+      : "general";
+
+    const icono = document.createElement("img");
+
+    icono.className = "consulta-icono";
+
+    icono.src = `assets/icons/consulta/${nombreIcono}.svg`;
+
+    icono.alt = "";
+    icono.width = 48;
+    icono.height = 48;
+
+    /* Numeracion automatica */
+
+    const numero = document.createElement("span");
+
+    numero.className = "consulta-numero";
+
+    numero.textContent = String(indice + 1).padStart(2, "0");
+
+    numero.setAttribute("aria-hidden", "true");
+
+    contenedorIcono.append(icono, numero);
+
+    /* Contenido de la etapa */
+
+    const contenido = document.createElement("div");
+
+    contenido.className = "consulta-contenido";
+
+    const titulo = document.createElement("h3");
+
+    titulo.textContent = etapa.titulo.trim();
+
+    const descripcion = document.createElement("p");
+
+    descripcion.textContent = etapa.descripcion.trim();
+
+    contenido.append(titulo, descripcion);
+
+    elemento.append(contenedorIcono, contenido);
+
+    fragmento.append(elemento);
+  });
+
+  contenedor.replaceChildren(fragmento);
+
+  /* Distribucion segun cantidad de etapas */
+
+  const columnas = Math.max(1, Math.min(etapasValidas.length, 4));
+
+  contenedor.style.setProperty("--consulta-columnas", String(columnas));
+
+  /* Estado alternativo */
+
+  contenedor.hidden = etapasValidas.length === 0;
+
+  if (mensajeVacio) {
+    mensajeVacio.hidden = etapasValidas.length > 0;
+  }
+}
+
+renderProcesoConsulta(estudio.procesoConsulta);
 const canales = document.getElementById("canales");
 function agregarCanal(texto, url) {
   const a = document.createElement("a");

@@ -15,7 +15,7 @@ function inicializarAnimaciones() {
 
   const elementos = document.querySelectorAll(
     ".section h2, .section .eyebrow, .grid article, details, " +
-      ".estudio-fotografia, .estudio-contenido",
+      ".estudio-fotografia, .estudio-contenido, .consulta-etapa",
   );
 
   if (!elementos.length) {

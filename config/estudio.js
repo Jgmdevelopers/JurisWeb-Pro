@@ -50,6 +50,32 @@ window.ESTUDIO = {
         "Orientación en procesos sucesorios, cuestiones hereditarias y distribución de bienes.",
     },
   ],
+  procesoConsulta: [
+    {
+      icono: "contacto",
+      titulo: "Primer contacto",
+      descripcion:
+        "Solicitá una entrevista mediante los canales habilitados, sin compartir información sensible.",
+    },
+    {
+      icono: "evaluacion",
+      titulo: "Evaluación inicial",
+      descripcion:
+        "Se coordinan las condiciones de atención y se analizan las circunstancias de tu consulta.",
+    },
+    {
+      icono: "orientacion",
+      titulo: "Orientación jurídica",
+      descripcion:
+        "El profesional evalúa las alternativas jurídicas aplicables a tu situación.",
+    },
+    {
+      icono: "acompanamiento",
+      titulo: "Acompañamiento",
+      descripcion:
+        "De corresponder, se acuerdan los próximos pasos y las condiciones del servicio profesional.",
+    },
+  ],
   equipo: [
     {
       nombre: "",

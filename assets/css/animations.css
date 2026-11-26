@@ -513,3 +513,85 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DEL PROCESO DE CONSULTA
+   ========================================= */
+
+.consulta-icono-contenedor {
+    transition:
+        box-shadow 350ms ease,
+        border-color 350ms ease;
+}
+
+.consulta-icono {
+    transition:
+        transform 350ms var(--motion-ease);
+}
+
+.consulta-cta {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.consulta-cta span {
+    transition:
+        transform 250ms ease;
+}
+
+/* Microinteracciones */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .consulta-etapa:hover
+    .consulta-icono-contenedor {
+
+        border-color: #dfc58e;
+
+        box-shadow:
+            0 0 0 9px rgba(185, 154, 96, 0.12);
+    }
+
+    .consulta-etapa:hover .consulta-icono {
+        transform: scale(1.12);
+    }
+
+    .consulta-cta:hover {
+        background: var(--white);
+        color: var(--navy);
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .consulta-cta:hover span {
+        transform: translateX(5px);
+    }
+}
+
+.consulta-cta:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 5px;
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .consulta-icono-contenedor,
+    .consulta-icono,
+    .consulta-cta,
+    .consulta-cta span {
+        transition: none;
+    }
+
+    .consulta-etapa:hover .consulta-icono,
+    .consulta-cta:hover,
+    .consulta-cta:hover span {
+        transform: none;
+    }
+}

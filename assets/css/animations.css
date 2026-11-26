@@ -764,3 +764,46 @@ nav a:focus-visible::after {
         transform: none;
     }
 }
+/* =========================================
+   ANIMACIONES DEL FOOTER
+   ========================================= */
+
+.footer-premium a {
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.footer-cta span,
+.footer-volver span {
+  display: inline-block;
+
+  transition:
+    transform 250ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .footer-cta:hover span {
+    transform: translateX(4px);
+  }
+
+  .footer-volver:hover span {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer-premium a,
+  .footer-cta span,
+  .footer-volver span {
+    transition: none;
+  }
+
+  .footer-cta:hover span,
+  .footer-volver:hover span {
+    transform: none;
+  }
+}

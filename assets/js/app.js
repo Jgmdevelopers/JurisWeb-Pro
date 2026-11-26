@@ -969,6 +969,137 @@ function renderContacto(configuracion) {
 }
 
 renderContacto(estudio);
+/**
+ * Valida la URL publica del desarrollador.
+ */
+function validarUrlDesarrollador(valor) {
+
+  if (typeof valor !== "string" || !valor.trim()) {
+    return "";
+  }
+
+  try {
+
+    const url = new URL(valor.trim());
+
+    if (
+      url.protocol !== "https:" ||
+      url.username ||
+      url.password ||
+      !url.hostname
+    ) {
+      return "";
+    }
+
+    return url.href;
+
+  } catch {
+
+    return "";
+  }
+}
+
+/**
+ * Actualiza la identidad institucional
+ * y la firma tecnologica del footer.
+ */
+function renderFooter(configuracion) {
+
+  const anio =
+    document.getElementById("footer-anio");
+
+  const descripcion =
+    document.getElementById("footer-descripcion");
+
+  const desarrollador =
+    document.getElementById("footer-desarrollador");
+
+  if (anio) {
+    anio.textContent =
+      String(new Date().getFullYear());
+  }
+
+  const datos =
+    configuracion && typeof configuracion === "object"
+      ? configuracion
+      : {};
+
+  if (
+    descripcion &&
+    typeof datos.descripcion === "string" &&
+    datos.descripcion.trim()
+  ) {
+    descripcion.textContent =
+      datos.descripcion.trim();
+  }
+
+  if (!desarrollador) {
+    return;
+  }
+
+  desarrollador.hidden =
+    datos.mostrarFirmaDesarrollador === false;
+
+  if (desarrollador.hidden) {
+    return;
+  }
+
+  const nombre =
+    typeof datos.desarrollador === "string" &&
+    datos.desarrollador.trim()
+      ? datos.desarrollador.trim()
+      : "GM.DEV";
+
+  const producto =
+    typeof datos.producto === "string" &&
+    datos.producto.trim()
+      ? datos.producto.trim()
+      : "JurisWeb Pro";
+
+  const url =
+    validarUrlDesarrollador(
+      datos.urlDesarrollador
+    );
+
+  const firmaAnterior =
+    document.getElementById("footer-firma");
+
+  if (firmaAnterior) {
+
+    const firma = document.createElement(
+      url ? "a" : "span"
+    );
+
+    firma.id = "footer-firma";
+    firma.className = "footer-firma";
+
+    firma.textContent = nombre;
+
+    if (url) {
+
+      firma.href = url;
+      firma.target = "_blank";
+      firma.rel = "noopener noreferrer";
+
+      firma.setAttribute(
+        "aria-label",
+        `${nombre} (nueva pestaña)`
+      );
+    }
+
+    firmaAnterior.replaceWith(firma);
+  }
+
+  const nombreProducto =
+    document.getElementById("footer-producto");
+
+  if (nombreProducto) {
+
+    nombreProducto.textContent = producto;
+  }
+}
+
+renderFooter(estudio.footer);
 const menu = document.getElementById("menu"),
   nav = document.getElementById("navegacion");
 if (menu && nav) {

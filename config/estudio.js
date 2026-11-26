@@ -61,6 +61,21 @@ window.ESTUDIO = {
         "Orientación en procesos sucesorios, cuestiones hereditarias y distribución de bienes.",
     },
   ],
+  // Identidad institucional del footer.
+
+  footer: {
+    descripcion:
+      "Atención profesional, responsabilidad y compromiso con cada consulta.",
+
+    mostrarFirmaDesarrollador: true,
+
+    desarrollador: "GM.DEV",
+
+    producto: "JurisWeb Pro",
+
+    urlDesarrollador: "",
+  },
+
   preguntasFrecuentes: [
     {
       pregunta: "¿El sitio brinda asesoramiento legal?",

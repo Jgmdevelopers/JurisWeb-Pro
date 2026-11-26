@@ -33,7 +33,10 @@
     "validar:seo": "node scripts/generar-seo.mjs --check",
     "test:seo:unit": "node --test tests/unit/seo.test.mjs",
     "test:seo:e2e": "playwright test seo.spec.js",
-    "test:seo": "npm run test:seo:unit && npm run test:seo:e2e"
+    "test:seo": "npm run test:seo:unit && npm run test:seo:e2e",
+    "generar:portada-social": "node scripts/generar-portada-social.mjs",
+    "test:portada-social": "node --test tests/unit/portada-social.test.mjs",
+    "generar:variantes-sociales": "node scripts/generar-variantes-sociales.mjs"
   },
   "repository": {
     "type": "git",

@@ -183,9 +183,17 @@ window.ESTUDIO = {
 
     idioma: "es-AR",
 
-    imagenSocial: "",
+    imagenSocial: "assets/images/branding/social-cover.jpg",
 
-    imagenSocialAlt: "",
+    imagenSocialAlt: "Identidad institucional del estudio jurídico.",
+
+    portadaSocial: {
+      nombre: "",
+
+      subtitulo: "",
+
+      ubicacion: "",
+    },
 
     openGraph: {
       titulo: "",
@@ -328,6 +336,7 @@ window.ESTUDIO = {
         "No. Cada situación requiere una evaluación profesional individual y no es posible garantizar un resultado jurídico determinado.",
     },
   ],
+
   procesoConsulta: [
     {
       icono: "contacto",
@@ -354,6 +363,7 @@ window.ESTUDIO = {
         "De corresponder, se acuerdan los próximos pasos y las condiciones del servicio profesional.",
     },
   ],
+
   equipo: [
     {
       nombre: "",

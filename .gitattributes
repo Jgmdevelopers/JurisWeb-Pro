@@ -17,3 +17,8 @@
 *.ico binary
 *.woff binary
 *.woff2 binary
+
+*.mjs text eol=lf
+*.py text eol=lf
+
+.gitattributes text eol=lf
